@@ -9,17 +9,44 @@
  * }
  */
 class Solution {
-    ArrayList<Integer> list = new ArrayList<>();
+        // ListNode head = null;
+        // public Solution(ListNode head) {
+        //     this.head = head;
+        // }
+        // public int getRandom() {
+        //     ListNode node = head;
+        //     int result = -1;
+        //     int index = 0;
+        //     Random random = new Random();
+        //     while (node != null) {
+        //         index++;
+        //         // Generate random index between 0 and index-1
+        //         // total possible outcome is index, but favorable outcome is 1
+        //         if (random.nextInt(index) == index-1)
+        //             result = node.val;
+        //         node = node.next;
+        //     } return result;
+        // }
+
+    int len=0;
+    ListNode headNode=null;
+    Random random = new Random();
     public Solution(ListNode head) {
-        while(head!=null){
-            list.add(head.val);
-            head=head.next;
+        headNode=head;
+        ListNode temp=head;
+        while(temp!=null){
+            len++;
+            temp=temp.next;
         }
     }
     
     public int getRandom() {
-        double rand=Math.random()*list.size();
-        return list.get((int)rand);
+        ListNode temp=headNode;
+        int rand_index=random.nextInt(len);
+        for(int i=0;i<rand_index;i++){
+            temp=temp.next;
+        }
+        return temp.val;
     }
 }
 
